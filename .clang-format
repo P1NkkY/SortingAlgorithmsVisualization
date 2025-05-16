@@ -4,3 +4,4 @@ Language: Cpp
 ColumnLimit: 80
 IndentWidth: 4
 TabWidth: 4
+AllowShortEnumsOnASingleLine: false
