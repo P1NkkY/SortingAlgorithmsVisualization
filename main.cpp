@@ -1,4 +1,5 @@
 #include "SFML/Graphics.hpp"
+#include "boost/signals2.hpp"
 #include <algorithm>
 #include <iostream>
 #include <numeric>
@@ -6,84 +7,107 @@
 #include <vector>
 
 #include "BubbleSort.h"
+#include "InsertionSort.h"
+#include "MergeSort.h"
+#include "QuickSort.h"
+#include "SelectionSort.h"
+#include "Visualization.h"
 
-int main() {
-
-    std::vector<int> vec(101); // вектор на 101 элемент (0-100)
-    std::vector<int> vec1;
-    BubbleSort *sort = new BubbleSort(vec1);
+std::vector<int> CreateArray() {
+    std::vector<int> res(101); // вектор на 101 элемент (0-100)
 
     // Заполняем последовательными числами
-    std::iota(vec.begin(), vec.end(), 0);
+    std::iota(res.begin(), res.end(), 0);
 
     // Перемешиваем
     std::random_device rd;
     std::mt19937 g(rd());
-    std::shuffle(vec.begin(), vec.end(), g);
+    std::shuffle(res.begin(), res.end(), g);
 
-    std::vector<sf::RectangleShape> rectangles;
-    rectangles.resize(vec.size());
-    int width = 5;
+    return res;
+}
 
-    for (int iter = 0; iter < vec.size(); iter++) {
-        sf::RectangleShape rect(sf::Vector2f(width, vec[iter] * 3));
-        rect.setPosition(sf::Vector2f(iter * 5 + iter, 0));
-        rectangles[iter] = rect;
-    }
+int main() {
 
-    // create the window
-    sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
+    std::vector<int> vec = CreateArray();
 
-    int iter = 0;
-    bool start = true;
-    // run the program as long as the window is open
-    while (window.isOpen()) {
-        // check all the window's events that were triggered since the last
-        // iteration of the loop
-        sf::Event event;
-        while (window.pollEvent(event)) {
-            // "close requested" event: we close the window
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
+    Visualization vis(WINDOW_WIDTH, WINDOW_HEIGHT, vec.size(), vec);
+    vis.Start();
 
-        // clear the window with black color
-        window.clear(sf::Color::Black);
+    BubbleSort *sort = new BubbleSort(vec);
+    InsertionSort *ins = new InsertionSort(vec);
+    SelectionSort *sel = new SelectionSort(vec);
+    QuickSort *q = new QuickSort(vec);
+    MergeSort m(vec);
+    m.signalUPD.connect(
+        boost::bind(&Visualization::Update, &vis, boost::placeholders::_1));
+    m.Calculate();
 
-        if (start) {
-            start = false;
-            for (auto rect : rectangles) {
-                window.draw(rect);
-            }
-            continue;
-        }
+    // std::vector<sf::RectangleShape> rectangles;
+    // rectangles.resize(vec.size());
+    // int width = 5;
 
-        if (iter < vec.size() - 1) {
-            if (vec[iter] < vec[iter + 1]) {
-                iter++;
-            } else {
-                std::swap(vec[iter], vec[iter + 1]);
-                iter = 0;
-            }
-        }
+    // for (int iter = 0; iter < vec.size(); iter++) {
+    //     sf::RectangleShape rect(sf::Vector2f(width, vec[iter] * 3));
+    //     rect.setPosition(sf::Vector2f(iter * 5 + iter, 0));
+    //     rectangles[iter] = rect;
+    // }
 
-        for (int jter = 0; jter < vec.size(); jter++) {
-            sf::RectangleShape rect(sf::Vector2f(width, vec[jter] * 3));
-            rect.setPosition(sf::Vector2f(jter * 5 + jter, 0));
-            rectangles[jter] = rect;
-            if (iter == jter)
-                rectangles[jter].setFillColor(sf::Color::Red);
-        }
+    // // create the window
+    // sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
 
-        for (auto rect : rectangles) {
-            window.draw(rect);
-        }
+    // int iter = 0;
+    // bool start = true;
+    // // run the program as long as the window is open
+    // while (window.isOpen()) {
+    //     // check all the window's events that were triggered since the last
+    //     // iteration of the loop
+    //     sf::Event event;
+    //     while (window.pollEvent(event)) {
+    //         // "close requested" event: we close the window
+    //         if (event.type == sf::Event::Closed)
+    //             window.close();
+    //     }
 
-        // end the current frame
-        window.display();
+    //     // clear the window with black color
+    //     window.clear(sf::Color::Black);
 
-        // sf::sleep(sf::milliseconds(3));
-    }
+    //     if (start) {
+    //         start = false;
+    //         for (auto rect : rectangles) {
+    //             window.draw(rect);
+    //         }
+    //         continue;
+    //     }
+
+    //     if (iter < vec.size() - 1) {
+    //         if (vec[iter] < vec[iter + 1]) {
+    //             iter++;
+    //         } else {
+    //             std::swap(vec[iter], vec[iter + 1]);
+    //             iter = 0;
+    //         }
+    //     }
+
+    //     for (int jter = 0; jter < vec.size(); jter++) {
+    //         sf::RectangleShape rect(sf::Vector2f(width, vec[jter] * 3));
+    //         rect.setPosition(sf::Vector2f(jter * 5 + jter, 0));
+    //         rectangles[jter] = rect;
+    //         if (iter == jter)
+    //             rectangles[jter].setFillColor(sf::Color::Red);
+    //     }
+
+    //     for (auto rect : rectangles) {
+    //         window.draw(rect);
+    //     }
+
+    //     // end the current frame
+    //     window.display();
+
+    //     // sf::sleep(sf::milliseconds(3));
+    // }
+
+    // std::this_thread::sleep_for(std::chrono::seconds(20));
 
     return 0;
 }

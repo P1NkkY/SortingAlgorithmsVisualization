@@ -2,9 +2,9 @@
 
 #include "ISorting.h"
 
-class InsertionSort : public ISorting {
+class SelectionSort : public ISorting {
   public:
-    explicit InsertionSort(std::vector<int> &data);
+    explicit SelectionSort(std::vector<int> &data);
 
     void Calculate();
 

@@ -10,6 +10,8 @@ class ISorting {
 
     virtual void Calculate() = 0;
 
+    virtual std::vector<int> GetData() { return m_data; }
+
   protected:
     std::vector<int> m_data;
     int m_size;

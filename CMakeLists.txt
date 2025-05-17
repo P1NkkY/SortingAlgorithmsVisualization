@@ -16,10 +16,18 @@ add_executable(${PROJECT_NAME}
     ISorting.cpp
     BubbleSort.cpp
     InsertionSort.cpp
+    SelectionSort.cpp
+    QuickSort.cpp
+    MergeSort.cpp
+    Visualization.cpp
     
     ISorting.h
     BubbleSort.h
     InsertionSort.h
+    SelectionSort.h
+    QuickSort.h
+    MergeSort.h
+    Visualization.h
 )
 
 # Link SFML libraries to your executable
