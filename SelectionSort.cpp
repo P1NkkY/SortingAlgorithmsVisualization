@@ -1,17 +1,21 @@
 #include "SelectionSort.h"
 
-SelectionSort::SelectionSort(std::vector<int> &data) : ISorting(data) {
-    // connect signal - slot
-}
+SelectionSort::SelectionSort(std::vector<int> &arr) : ISortingAlgorithm(arr) {}
 
-void SelectionSort::Calculate() {
+SelectionSort::~SelectionSort() { std::cout << "~SelectionSort" << std::endl; }
+
+void SelectionSort::sort() {
     for (int iter = 0; iter < m_size - 1; iter++) {
         int min_index = iter;
         for (int jter = iter + 1; jter < m_size; jter++) {
-            if (m_data[jter] < m_data[min_index]) {
+            if (m_arr[jter] < m_arr[min_index]) {
                 min_index = jter;
             }
         }
-        std::swap(m_data[iter], m_data[min_index]);
+        std::swap(m_arr[iter], m_arr[min_index]);
+        updateVisualization(m_arr);
     }
+    m_sorted = true;
 }
+
+std::string SelectionSort::getName() const { return "Selection Sort"; }

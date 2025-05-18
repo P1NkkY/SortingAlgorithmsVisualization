@@ -1,22 +1,23 @@
 #include "BubbleSort.h"
 
-BubbleSort::BubbleSort(std::vector<int> &data) : ISorting(data) {
-    // connect signal - slot
-}
+BubbleSort::BubbleSort(std::vector<int> &arr) : ISortingAlgorithm(arr) {}
 
-void BubbleSort::Calculate() {
+BubbleSort::~BubbleSort() { std::cout << "~BubbleSort" << std::endl; }
+
+void BubbleSort::sort() {
     int iter = 0;
     while (iter < m_size - 1) {
         if (iter < m_size - 1) {
-            if (m_data[iter] < m_data[iter + 1]) {
+            if (m_arr[iter] < m_arr[iter + 1]) {
                 iter++;
             } else {
-                std::swap(m_data[iter], m_data[iter + 1]);
+                std::swap(m_arr[iter], m_arr[iter + 1]);
+                updateVisualization(m_arr);
                 iter = 0;
             }
-            // emit signal
         }
     }
-
-    // emit signal complete
+    m_sorted = true;
 }
+
+std::string BubbleSort::getName() const { return "Bubble Sort"; };

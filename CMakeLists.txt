@@ -13,21 +13,24 @@ include_directories(${Boost_INCLUDE_DIR})
 # Add your executable
 add_executable(${PROJECT_NAME} 
     main.cpp
-    ISorting.cpp
+    ISortingAlgorithm.cpp
     BubbleSort.cpp
     InsertionSort.cpp
     SelectionSort.cpp
     QuickSort.cpp
     MergeSort.cpp
-    Visualization.cpp
+    SortingVisualization.cpp
+    VisualDataStorage.cpp
     
-    ISorting.h
+    ISortingAlgorithm.h
     BubbleSort.h
     InsertionSort.h
     SelectionSort.h
     QuickSort.h
     MergeSort.h
-    Visualization.h
+    SortingVisualization.h
+    VisualDataStorage.h
+    constants.h
 )
 
 # Link SFML libraries to your executable

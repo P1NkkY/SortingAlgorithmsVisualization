@@ -1,17 +1,13 @@
-#include "SFML/Graphics.hpp"
-#include "boost/signals2.hpp"
-#include <algorithm>
 #include <iostream>
 #include <numeric>
 #include <random>
-#include <vector>
 
 #include "BubbleSort.h"
 #include "InsertionSort.h"
 #include "MergeSort.h"
 #include "QuickSort.h"
 #include "SelectionSort.h"
-#include "Visualization.h"
+#include "SortingVisualization.h"
 
 std::vector<int> CreateArray() {
     std::vector<int> res(101); // вектор на 101 элемент (0-100)
@@ -28,20 +24,19 @@ std::vector<int> CreateArray() {
 }
 
 int main() {
+    setlocale(LC_ALL, "Russian");
+    std::vector<int> arr = CreateArray();
 
-    std::vector<int> vec = CreateArray();
+    std::unique_ptr<BubbleSort> bubbleSort = std::make_unique<BubbleSort>(arr);
+    std::unique_ptr<InsertionSort> insertionSort =
+        std::make_unique<InsertionSort>(arr);
+    std::unique_ptr<SelectionSort> selectionSort =
+        std::make_unique<SelectionSort>(arr);
+    std::unique_ptr<QuickSort> quickSort = std::make_unique<QuickSort>(arr);
+    std::unique_ptr<MergeSort> mergeSort = std::make_unique<MergeSort>(arr);
 
-    Visualization vis(WINDOW_WIDTH, WINDOW_HEIGHT, vec.size(), vec);
+    SortingVisualization vis(*quickSort.get());
     vis.Start();
-
-    BubbleSort *sort = new BubbleSort(vec);
-    InsertionSort *ins = new InsertionSort(vec);
-    SelectionSort *sel = new SelectionSort(vec);
-    QuickSort *q = new QuickSort(vec);
-    MergeSort m(vec);
-    m.signalUPD.connect(
-        boost::bind(&Visualization::Update, &vis, boost::placeholders::_1));
-    m.Calculate();
 
     // std::vector<sf::RectangleShape> rectangles;
     // rectangles.resize(vec.size());

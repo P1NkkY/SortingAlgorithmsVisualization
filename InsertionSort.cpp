@@ -1,20 +1,23 @@
 #include "InsertionSort.h"
 
-InsertionSort::InsertionSort(std::vector<int> &data) : ISorting(data) {
-    // connect signal - slot
-}
+InsertionSort::InsertionSort(std::vector<int> &arr) : ISortingAlgorithm(arr) {}
 
-void InsertionSort::Calculate() {
+InsertionSort::~InsertionSort() { std::cout << "~InsertionSort" << std::endl; }
+
+void InsertionSort::sort() {
     for (int iter = 1; iter < m_size; iter++) {
-        int key = m_data[iter];
+        int key = m_arr[iter];
         int jter = iter - 1;
 
-        while (jter >= 0 && m_data[jter] > key) {
-            m_data[jter + 1] = m_data[jter];
+        while (jter >= 0 && m_arr[jter] > key) {
+            m_arr[jter + 1] = m_arr[jter];
             jter--;
+            updateVisualization(m_arr);
         }
-        m_data[jter + 1] = key;
-        // emit signal
+        m_arr[jter + 1] = key;
+        updateVisualization(m_arr);
     }
-    // emit signal complete
+    m_sorted = true;
 }
+
+std::string InsertionSort::getName() const { return "Insertion Sort"; }
