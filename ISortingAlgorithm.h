@@ -10,22 +10,20 @@ class ISortingAlgorithm {
 
     virtual ~ISortingAlgorithm();
 
-    // Основной метод сортировки
+    // Basic sorting method
     virtual void sort() = 0;
 
-    // Возвращает название алгоритма
+    // Returns the name of the algorithm
     virtual std::string getName() const = 0;
 
-    bool getSorted() const { return m_sorted; }
-
-    // Возвращает текущий массив элементов
+    // Returns the current array of elements
     std::vector<int> getCurrentState() const;
 
-    // Сигнал для обновления визуализации массива
+    // Signal to update array visualization
     boost::signals2::signal<void(const std::vector<int> &)> updateVisualization;
 
   protected:
-    std::vector<int> m_arr; // Массив элементов
-    int m_size;             // Размер массива
-    bool m_sorted = false;  // Признак отсортирован ли массив
+    std::vector<int> m_arr; // Array of elements
+    int m_size;             // Array size
+    bool m_sorted = false;  // Indicates whether the array sorting has finished
 };

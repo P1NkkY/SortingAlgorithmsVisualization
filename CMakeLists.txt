@@ -36,10 +36,7 @@ add_executable(${PROJECT_NAME}
 # Link SFML libraries to your executable
 target_link_libraries(${PROJECT_NAME}
 PUBLIC
-    sfml-system
     sfml-window
     sfml-graphics
-    sfml-audio
-    sfml-network
     boost::boost
 )

@@ -43,7 +43,4 @@ class MergeSort : public ISortingAlgorithm {
     /// @param mid Middle index of the array
     /// @param right Right middle of the array
     void merge(std::vector<int> &arr, int left, int mid, int right);
-
-  private:
-    bool complete = false;
 };

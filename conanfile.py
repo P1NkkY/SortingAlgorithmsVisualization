@@ -6,7 +6,7 @@ class SortingAlgorithms(ConanFile):
     generators = "CMakeDeps", "CMakeToolchain"
 
     def configure(self) -> None:
-        """"Конфигурация"""
+        """"Configuration"""
         self.options["*"].shared = False
         self.options["*"].header_only = True
         self.options["boost*"].header_only = False
@@ -14,7 +14,6 @@ class SortingAlgorithms(ConanFile):
     def requirements(self):
         self.requires("sfml/2.6.2")
         self.requires("boost/1.84.0")
-        # self.requires("gtest/1.15.0")
 
     def layout(self):
         cmake_layout(self)

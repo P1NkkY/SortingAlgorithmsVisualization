@@ -10,14 +10,22 @@ class SortingVisualization : public VisualDataStorage {
 
     ~SortingVisualization();
 
-    void Start();
+    /// @brief Running sorting algorithm with visualization
+    void start();
 
-    void Update(const std::vector<int> &arr);
+    /// @brief SLOT to update visualization of bars
+    /// @param arr The current array
+    void updateWindow(const std::vector<int> &arr);
 
   private:
-    void Clear();
+    /// @brief Clear the window with black color
+    void clear();
 
-    void Display();
+    /// @brief Display the current frame
+    void display();
+
+    /// @brief Draw the current array bars
+    void draw();
 
   private:
     sf::RenderWindow *m_window;
