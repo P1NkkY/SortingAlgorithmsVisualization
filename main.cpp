@@ -1,6 +1,4 @@
 #include <iostream>
-#include <numeric>
-#include <random>
 
 #include "BubbleSort.h"
 #include "InsertionSort.h"
@@ -8,20 +6,13 @@
 #include "QuickSort.h"
 #include "SelectionSort.h"
 #include "SortingVisualization.h"
-
-std::vector<int> createArray() {
-    std::vector<int> res(50);
-    std::iota(res.begin(), res.end(), 0);
-    std::random_device rd;
-    std::mt19937 g(rd());
-    std::shuffle(res.begin(), res.end(), g);
-
-    return res;
-}
+#include "utils.h"
 
 int main() {
     std::vector<int> arr = createArray();
 
+    // If you want to use a different Sorting Algorithm, create pointer
+    // to this object and pass it to the visualizer.
     std::unique_ptr<BubbleSort> bubbleSort = std::make_unique<BubbleSort>(arr);
 
     std::unique_ptr<SortingVisualization> visualizer =

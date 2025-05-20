@@ -26,11 +26,11 @@ class MergeSort : public ISortingAlgorithm {
 
     ~MergeSort();
 
-    void sort();
-
     std::string getName() const;
 
   private:
+    void sort();
+
     /// @brief Merge sort algorithm
     /// @param arr The current array
     /// @param left Left index of the array

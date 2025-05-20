@@ -2,6 +2,7 @@
 
 #include "ISortingAlgorithm.h"
 #include "VisualDataStorage.h"
+#include <mutex>
 #include <thread>
 
 class SortingVisualization : public VisualDataStorage {
@@ -27,8 +28,12 @@ class SortingVisualization : public VisualDataStorage {
     /// @brief Draw the current array bars
     void draw();
 
+    void onEventTypeClosed();
+    void onEventMouseButtonPressed(const sf::Event &event);
+
   private:
     sf::RenderWindow *m_window;
     ISortingAlgorithm &m_sorter;
-    std::thread m_th;
+    boost::signals2::connection m_connection;
+    std::mutex m_locker;
 };

@@ -26,7 +26,8 @@ class SelectionSort : public ISortingAlgorithm {
 
     ~SelectionSort();
 
-    void sort();
-
     std::string getName() const;
+
+  private:
+    void sort();
 };

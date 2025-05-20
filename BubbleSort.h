@@ -24,7 +24,8 @@ class BubbleSort : public ISortingAlgorithm {
 
     ~BubbleSort();
 
-    void sort();
-
     std::string getName() const;
+
+  private:
+    void sort();
 };

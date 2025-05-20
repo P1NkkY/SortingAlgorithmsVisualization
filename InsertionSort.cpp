@@ -4,6 +4,8 @@ InsertionSort::InsertionSort(std::vector<int> &arr) : ISortingAlgorithm(arr) {}
 
 InsertionSort::~InsertionSort() { std::cout << "~InsertionSort" << std::endl; }
 
+std::string InsertionSort::getName() const { return "Insertion Sort"; }
+
 void InsertionSort::sort() {
     for (int iter = 1; iter < m_size; iter++) {
         int key = m_arr[iter];
@@ -17,7 +19,5 @@ void InsertionSort::sort() {
         m_arr[jter + 1] = key;
         updateVisualization(m_arr);
     }
-    m_sorted = true;
+    stop();
 }
-
-std::string InsertionSort::getName() const { return "Insertion Sort"; }

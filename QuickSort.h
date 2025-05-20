@@ -32,11 +32,11 @@ class QuickSort : public ISortingAlgorithm {
 
     ~QuickSort();
 
-    void sort();
-
     std::string getName() const;
 
   private:
+    void sort();
+
     /// @brief Quick Sort Algorithm
     /// @param arr The current array
     /// @param low Left index of the array

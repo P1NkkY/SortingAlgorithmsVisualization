@@ -4,12 +4,12 @@ MergeSort::MergeSort(std::vector<int> &arr) : ISortingAlgorithm(arr) {}
 
 MergeSort::~MergeSort() { std::cout << "~MergeSort" << std::endl; }
 
+std::string MergeSort::getName() const { return "Merge Sort"; }
+
 void MergeSort::sort() {
     mergeSort(m_arr, 0, m_size - 1);
-    m_sorted = true;
+    stop();
 }
-
-std::string MergeSort::getName() const { return "Merge Sort"; }
 
 void MergeSort::mergeSort(std::vector<int> &arr, int left, int right) {
     if (left >= right)

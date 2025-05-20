@@ -10,8 +10,8 @@ class VisualDataStorage {
     ~VisualDataStorage();
 
     /// @brief Initialize data
-    /// @param size Size of the array
-    void initData(int size);
+    /// @param arr The current array
+    void init(const std::vector<int> &arr);
 
     /// @brief Update visualization for current iteration of sorting
     /// @param arr The current array

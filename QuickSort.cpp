@@ -4,12 +4,12 @@ QuickSort::QuickSort(std::vector<int> &arr) : ISortingAlgorithm(arr) {}
 
 QuickSort::~QuickSort() { std::cout << "~QuickSort" << std::endl; }
 
+std::string QuickSort::getName() const { return "Quick Sort"; }
+
 void QuickSort::sort() {
     quickSort(m_arr, 0, m_size - 1);
-    m_sorted = true;
+    stop();
 }
-
-std::string QuickSort::getName() const { return "Quick Sort"; }
 
 void QuickSort::quickSort(std::vector<int> &arr, int low, int high) {
     if (low < high) {

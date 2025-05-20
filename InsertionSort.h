@@ -26,7 +26,8 @@ class InsertionSort : public ISortingAlgorithm {
 
     ~InsertionSort();
 
-    void sort();
-
     std::string getName() const;
+
+  private:
+    void sort();
 };
