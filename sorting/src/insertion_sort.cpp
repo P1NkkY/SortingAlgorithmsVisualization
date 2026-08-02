@@ -1,8 +1,8 @@
 #include "insertion_sort.h"
 
-void sorting::InsertionSort(
+void sorting::insertion_sort::sort(
     std::vector<int>& data, std::function<bool(int, int)> comparator,
-    std::function<void(const std::vector<int>&)> visualizer) {
+    std::function<void(const std::vector<int>&)>& visualizer) {
     for (int iter = 1; iter < data.size(); iter++) {
         int current = data[iter];
         int jter = iter;

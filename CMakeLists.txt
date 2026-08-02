@@ -11,32 +11,31 @@ find_package(Boost REQUIRED)
 include_directories(${Boost_INCLUDE_DIR})
 
 # Add your executable
-add_executable(${PROJECT_NAME} 
-    main.cpp
-    ISortingAlgorithm.cpp
-    BubbleSort.cpp
-    InsertionSort.cpp
-    SelectionSort.cpp
-    QuickSort.cpp
-    MergeSort.cpp
-    SortingVisualization.cpp
-    VisualDataStorage.cpp
-    
-    ISortingAlgorithm.h
-    BubbleSort.h
-    InsertionSort.h
-    SelectionSort.h
-    QuickSort.h
-    MergeSort.h
-    SortingVisualization.h
-    VisualDataStorage.h
-    constants.h
-)
+add_executable(
+  ${PROJECT_NAME}
+  main.cpp
+  sorting/include/bubble_sort.h
+  sorting/include/insertion_sort.h
+  sorting/include/selection_sort.h
+  sorting/include/quick_sort.h
+  sorting/src/bubble_sort.cpp
+  sorting/src/insertion_sort.cpp
+  sorting/src/selection_sort.cpp
+  sorting/src/quick_sort.cpp
+  ISortingAlgorithm.cpp
+  SelectionSort.cpp
+  QuickSort.cpp
+  MergeSort.cpp
+  SortingVisualization.cpp
+  VisualDataStorage.cpp
+  ISortingAlgorithm.h
+  SelectionSort.h
+  QuickSort.h
+  MergeSort.h
+  SortingVisualization.h
+  VisualDataStorage.h
+  constants.h)
 
 # Link SFML libraries to your executable
-target_link_libraries(${PROJECT_NAME}
-PUBLIC
-    sfml-window
-    sfml-graphics
-    boost::boost
-)
+target_link_libraries(${PROJECT_NAME} PUBLIC sfml-window sfml-graphics
+                                             boost::boost)
