@@ -18,20 +18,16 @@ add_executable(
   sorting/include/insertion_sort.h
   sorting/include/selection_sort.h
   sorting/include/quick_sort.h
+  sorting/include/merge_sort.h
   sorting/src/bubble_sort.cpp
   sorting/src/insertion_sort.cpp
   sorting/src/selection_sort.cpp
   sorting/src/quick_sort.cpp
+  sorting/src/merge_sort.cpp
   ISortingAlgorithm.cpp
-  SelectionSort.cpp
-  QuickSort.cpp
-  MergeSort.cpp
   SortingVisualization.cpp
   VisualDataStorage.cpp
   ISortingAlgorithm.h
-  SelectionSort.h
-  QuickSort.h
-  MergeSort.h
   SortingVisualization.h
   VisualDataStorage.h
   constants.h)
