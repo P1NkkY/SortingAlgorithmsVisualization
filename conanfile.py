@@ -7,9 +7,9 @@ class SortingAlgorithms(ConanFile):
 
     def configure(self) -> None:
         """"Configuration"""
-        self.options["*"].shared = False
-        self.options["*"].header_only = True
-        self.options["boost*"].header_only = False
+        self.options["sfml"].shared = False
+        self.options["sfml"].audio = False
+        self.options["boost*"].header_only = True
 
     def requirements(self):
         self.requires("sfml/2.6.2")
